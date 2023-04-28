@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => SelectFileProvider(),
       child: const MaterialApp(
+        title: 'LZW Compression',
         debugShowCheckedModeBanner: false,
         home: HomePage(),
       ),
