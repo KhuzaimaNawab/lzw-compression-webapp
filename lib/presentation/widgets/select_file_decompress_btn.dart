@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 import '../../provider/select_file_provider.dart';
 
-class SelectFileBtn extends StatelessWidget {
-  SelectFileBtn({super.key,required this.extension});
+class SelectFileDecompressBtn extends StatelessWidget {
+  SelectFileDecompressBtn({super.key, required this.extension});
 
   String? _fileName;
   String extension;
@@ -20,16 +20,33 @@ class SelectFileBtn extends StatelessWidget {
     if (result != null) {
       _fileName = result.files.first.name;
       pickedFile = result.files.first;
-      provider.setPlatFormFile(pickedFile);
+      provider.setDecompressedFile(pickedFile);
     }
-    provider.setFileName(_fileName!);
+    provider.setDecompressedFileName(_fileName!);
   }
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
       onPressed: () => onPress(context),
-      child: const Text('Select a file'),
+      child: SizedBox(
+        height: 40,
+        width: 130,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(Icons.upload),
+            Text(
+              'UPLOAD FILE',
+            )
+          ],
+        ),
+      ),
     );
   }
 }

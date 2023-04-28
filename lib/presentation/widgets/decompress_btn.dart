@@ -9,14 +9,35 @@ class DecompressBtn extends StatelessWidget {
   void onPress(BuildContext context) {
     DecompressFileAPI decompress = DecompressFileAPI();
     final provider = Provider.of<SelectFileProvider>(context, listen: false);
-    decompress.decompress(provider.pickedFile!);
+    decompress.decompress(provider.decompressedFile!);
   }
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+        backgroundColor: Colors.grey,
+      ),
       onPressed: () => onPress(context),
-      child: const Text('Decompress'),
+      child: SizedBox(
+        height: 40,
+        width: 130,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(Icons.unarchive),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+              'DECOMPRESS',
+            )
+          ],
+        ),
+      ),
     );
   }
 }

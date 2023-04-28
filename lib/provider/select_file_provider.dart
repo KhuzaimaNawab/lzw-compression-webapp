@@ -2,23 +2,36 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class SelectFileProvider with ChangeNotifier {
-  String? _fileName;
-  PlatformFile? _pickedFile;
+  String? _compressedFileName;
+  String? _decompressedFileName;
+  PlatformFile? _compressedFile;
+  PlatformFile? _decompressedFile;
 
-  String? get fileName => _fileName;
+  String? get compressedFileName => _compressedFileName;
 
-
-  void setFileName(String name) {
-    _fileName = name;
+  void setCompressedFileName(String name) {
+    _compressedFileName = name;
     notifyListeners();
   }
 
-  PlatformFile? get pickedFile => _pickedFile;
+  String? get decompressedFileName => _decompressedFileName;
 
-  void setPlatFormFile(PlatformFile file) {
-    _pickedFile = file;
+  void setDecompressedFileName(String name) {
+    _decompressedFileName = name;
+    notifyListeners();
+  }
+
+  PlatformFile? get compressedFile => _compressedFile;
+
+  void setCompressedFile(PlatformFile file) {
+    _compressedFile = file;
+    notifyListeners();
+  }
+
+  PlatformFile? get decompressedFile => _decompressedFile;
+
+  void setDecompressedFile(PlatformFile file) {
+    _decompressedFile = file;
     notifyListeners();
   }
 }
-
-

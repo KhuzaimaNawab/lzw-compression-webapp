@@ -9,14 +9,35 @@ class CompressBtn extends StatelessWidget {
   void onPress(BuildContext context) {
     final CompressFileAPI sendFile = CompressFileAPI();
     final provider = Provider.of<SelectFileProvider>(context, listen: false);
-    sendFile.compress(provider.pickedFile!);
-}
+    sendFile.compress(provider.compressedFile!);
+  }
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+        backgroundColor: Colors.grey,
+      ),
       onPressed: () => onPress(context),
-      child: const Text('Compress'),
+      child: SizedBox(
+        height: 40,
+        width: 130,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(Icons.compress),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+              'COMPRESS',
+            )
+          ],
+        ),
+      ),
     );
   }
 }
