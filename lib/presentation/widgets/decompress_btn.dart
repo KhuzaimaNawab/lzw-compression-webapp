@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:lzm_compression_webapp/provider/select_file_provider.dart';
-import 'package:lzm_compression_webapp/service/compress_file_api.dart';
+import 'package:lzm_compression_webapp/service/decompress_file_api.dart';
 import 'package:provider/provider.dart';
 
-class CompressBtn extends StatelessWidget {
-  const CompressBtn({super.key});
+class DecompressBtn extends StatelessWidget {
+  const DecompressBtn({super.key});
 
   void onPress(BuildContext context) {
-    final CompressFileAPI sendFile = CompressFileAPI();
+    DecompressFileAPI decompress = DecompressFileAPI();
     final provider = Provider.of<SelectFileProvider>(context, listen: false);
-    sendFile.compress(provider.pickedFile!);
-}
+    decompress.decompress(provider.pickedFile!);
+  }
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () => onPress(context),
-      child: const Text('Compress'),
+      child: const Text('Decompress'),
     );
   }
 }

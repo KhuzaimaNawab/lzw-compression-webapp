@@ -1,23 +1,24 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
-class SendFileAPI {
-  void sendFile(PlatformFile file) async {
-    final url = Uri.parse('http://localhost:3000/compress');
-    final bytes = file.bytes;
+class DecompressFileAPI {
+  void decompress(PlatformFile file) async {
+    final url = Uri.parse('http://localhost:3000/decompress');
+    final bytes = file.bytes!;
+    final uint8List = Uint8List.fromList(bytes);
     final request = http.MultipartRequest('POST', url);
-    final multipartFile = http.MultipartFile.fromBytes(
+    final multiPartFile = http.MultipartFile.fromBytes(
       'file',
-      bytes as List<int>,
+      uint8List,
       filename: file.name,
     );
-    request.files.add(multipartFile);
+    request.files.add(multiPartFile);
     final response = await http.Response.fromStream(await request.send());
     final responseBody = json.decode(response.body);
-    print(responseBody['compressedFileLink']);
     String downloadURL = responseBody['compressedFileLink'];
     final uri = Uri.parse(downloadURL);
     if (await canLaunchUrl(uri)) {

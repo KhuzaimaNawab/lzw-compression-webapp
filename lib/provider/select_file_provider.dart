@@ -7,6 +7,7 @@ class SelectFileProvider with ChangeNotifier {
 
   String? get fileName => _fileName;
 
+
   void setFileName(String name) {
     _fileName = name;
     notifyListeners();
@@ -19,3 +20,5 @@ class SelectFileProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+

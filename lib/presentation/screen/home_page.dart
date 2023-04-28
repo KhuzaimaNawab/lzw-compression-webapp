@@ -1,9 +1,10 @@
 import "package:flutter/material.dart";
 import "package:lzm_compression_webapp/presentation/widgets/selectFile_btn.dart";
-import "package:lzm_compression_webapp/provider/select_file_provier.dart";
+import 'package:lzm_compression_webapp/provider/select_file_provider.dart';
 import "package:provider/provider.dart";
 
 import "../widgets/compress_btn.dart";
+import "../widgets/decompress_btn.dart";
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -19,14 +20,14 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
-              'Mana Kardia',
+              'LZW Data Compression',
               style: TextStyle(fontSize: 40),
             ),
             const SizedBox(
               height: 40,
             ),
             const Text(
-              'Check kar Ya',
+              'LZW is a loseless data compresssion',
               style: TextStyle(fontSize: 20),
             ),
             const SizedBox(
@@ -37,7 +38,9 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const SelectFileBtn(),
+            SelectFileBtn(
+              extension: 'txt',
+            ),
             Consumer<SelectFileProvider>(
               builder: (context, value, _) {
                 return Visibility(
@@ -52,6 +55,19 @@ class HomePage extends StatelessWidget {
               height: 20,
             ),
             const CompressBtn(),
+            const SizedBox(height: 60),
+            const Text(
+                'Select a file to decompress (The file should be in .lzw extension)'),
+            const SizedBox(
+              height: 20,
+            ),
+            SelectFileBtn(
+              extension: 'lzw',
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const DecompressBtn(),
           ],
         ),
       ),

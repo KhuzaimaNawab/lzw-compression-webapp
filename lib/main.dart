@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:lzm_compression_webapp/provider/select_file_provier.dart';
+import 'package:lzm_compression_webapp/provider/select_file_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'presentation/screen/home_page.dart';
